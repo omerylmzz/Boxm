@@ -11,7 +11,7 @@ import OnboardingData from "../constants/OnboardingData";
 import OnboardingItem from "../components/items/OnboardingItem";
 import Pegination from "../components/items/Pegination";
 
-const Onboarding = () => {
+const Onboarding = ({ navigation }) => {
   const flatListRef = useRef(null);
   const flatListIndex = useSharedValue(0);
   const axisX = useSharedValue(0);
@@ -35,7 +35,7 @@ const Onboarding = () => {
     if (flatListIndex.value < OnboardingData.length - 1) {
       flatListRef.current.scrollToIndex({ index: flatListIndex.value + 1 });
     } else {
-      //navigation.navigate("Security");
+      navigation.navigate("Security");
     }
   };
 
