@@ -21,9 +21,9 @@ import { MotiView } from "moti";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 const Security = ({ navigation }) => {
+  const codeLength = 6;
   const [title, setTitle] = useState([]);
   const [code, setCode] = useState([]);
-  const codeLength = 6;
 
   useEffect(() => {
     checkUserPinCode();
