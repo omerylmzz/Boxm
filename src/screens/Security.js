@@ -38,6 +38,7 @@ const Security = ({ navigation }) => {
           const _code = await AsyncStorage.getItem("USER_PIN_CODE");
           if (_code === null) {
             await AsyncStorage.setItem("USER_PIN_CODE", code.join(""));
+            navigation.replace("Home");
           } else {
             code.join("") === _code
               ? navigation.replace("Home")

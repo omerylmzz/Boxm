@@ -11,7 +11,7 @@ import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 const CollectionItem = ({ icon, text, onPress }) => {
   return (
     <View style={styles.container}>
-      <Pressable style={styles.collectionContainer}>
+      <Pressable style={styles.collectionContainer} onPress={onPress}>
         <View style={styles.collectionBody}>
           <Icon name={icon} color={LightTheme.colors.placeholder} size={24} />
         </View>

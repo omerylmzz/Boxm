@@ -4,6 +4,8 @@ import Onboarding from "./Onboarding";
 import Security from "./Security";
 import Home from "./Home";
 import NewCollection from "./NewCollection";
+import Applications from "./Applications";
+import NewApplication from "./NewApplication";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,11 +26,23 @@ const Route = () => {
       <Stack.Screen
         name="Home"
         component={Home}
-        options={{ animation: "fade" }}
+        options={{ headerShown: true, animation: "fade" }}
       />
       <Stack.Screen
         name="NewCollection"
         component={NewCollection}
+        options={{ animation: "fade_from_bottom" }}
+      />
+      <Stack.Screen
+        name="Applications"
+        component={Applications}
+        options={{
+          animation: "ios_from_right",
+        }}
+      />
+      <Stack.Screen
+        name="NewApplication"
+        component={NewApplication}
         options={{ animation: "fade_from_bottom" }}
       />
     </Stack.Navigator>

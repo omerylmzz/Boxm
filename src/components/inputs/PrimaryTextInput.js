@@ -15,8 +15,6 @@ import {
 
 const PrimaryTextInput = ({
   visible,
-  randomIcon,
-  randomIconOnPress,
   title,
   passwordIcon,
   passwordIconOnPress,
@@ -29,9 +27,6 @@ const PrimaryTextInput = ({
       {title && (
         <View style={styles.wrapper}>
           <Text style={styles.title}>{title}</Text>
-          {randomIcon && (
-            <Icon name="sync" color={LightTheme.colors.icon} size={18} />
-          )}
         </View>
       )}
       <View style={styles.container}>

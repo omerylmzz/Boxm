@@ -16,15 +16,25 @@ import { horizontalScale, moderateScale } from "../helpers/Metrics";
 import BottomSheet from "../components/layouts/BottomSheet";
 import CollectionIconData from "../constants/CollectionIconData";
 import { useSQLiteContext } from "expo-sqlite";
+import { useDispatch } from "react-redux";
+import { fetchCollections } from "../store/slices/HomeSlice";
 
 const NewCollection = ({ navigation }) => {
   const db = useSQLiteContext();
   const bottomSheetRef = useRef(null);
   const [collectionName, setCollectionName] = useState("Koleksiyon Adı");
-  const [collectionIconData, setCollectionIconData] =
-    useState(CollectionIconData);
+  const [collectionIconData, setCollectionIconData] = useState(
+    JSON.parse(JSON.stringify(CollectionIconData))
+  );
   const [selectedIcon, setSelectedIcon] = useState("bank");
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(fetchCollections());
+    };
+  }, []);
 
   const addCollection = () => {
     if (collectionName.trim() === "") {
@@ -77,21 +87,14 @@ const NewCollection = ({ navigation }) => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <PrimaryHeader
-        title="New Application"
+        title="Yeni Koleksiyon"
         leftIcon="window-close"
         leftIconOnPress={() => navigation.goBack()}
         rightIcon="check"
         rightIconOnPress={addCollection}
         isLoading={isLoading}
       />
-      <ScrollView
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{
-          flexGrow: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <View style={styles.collectionContainer}>
           <View style={styles.collectionBody}>
             <Pressable onPress={showIcons}>
@@ -108,7 +111,7 @@ const NewCollection = ({ navigation }) => {
           value={collectionName}
           onChangeText={setCollectionName}
         />
-      </ScrollView>
+      </View>
       <BottomSheet ref={bottomSheetRef} snapTo="%15">
         <View
           style={{
